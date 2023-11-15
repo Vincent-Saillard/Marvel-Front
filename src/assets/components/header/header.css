@@ -1,0 +1,55 @@
+header {
+  height: 60px;
+  display: flex;
+}
+
+header .container {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 0px 20px;
+}
+
+header .lineOne {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+header .logo {
+  height: 60px;
+  object-fit: cover;
+}
+
+header .star {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+}
+
+header .searchBar {
+  flex: 30%;
+}
+
+header nav {
+  flex: 20%;
+  display: flex;
+  border: 1px solid green;
+  height: 100%;
+}
+
+header nav > .link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 1px solid yellow;
+}
+
+header .hidden {
+  visibility: hidden;
+}
