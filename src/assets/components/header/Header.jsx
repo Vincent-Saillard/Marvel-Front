@@ -16,20 +16,22 @@ const Header = ({ setSearchName }) => {
             </Link>
 
             {/* On Comics or Characters pages search input is visible */}
-
-            <input
-              type="search"
-              className={`searchBar ${
-                location.pathname === "/characters" ||
-                location.pathname === "/comics"
-                  ? null
-                  : "hidden"
-              }`}
-              onChange={(event) => {
-                const value = event.target.value;
-                setSearchName(value);
-              }}
-            />
+            <div className="search">
+              <input
+                type="search"
+                id="search"
+                className={`searchBar ${
+                  location.pathname === "/characters" ||
+                  location.pathname === "/comics"
+                    ? null
+                    : "hidden"
+                }`}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setSearchName(value);
+                }}
+              />
+            </div>
 
             <nav>
               <Link to="/characters" className="link">

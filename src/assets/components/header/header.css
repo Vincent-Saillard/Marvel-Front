@@ -30,8 +30,13 @@ header .star {
   object-fit: cover;
 }
 
-header .searchBar {
+header .search {
   flex: 30%;
+  display: flex;
+}
+
+header .searchBar {
+  flex: 1;
 }
 
 header nav {

@@ -1,6 +1,10 @@
 import "../characters/characters.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
+// import before from "../../pictures/before.png";
+// import after from "../../pictures/after.png";
 
 const Characters = ({ searchName }) => {
   // state for limit value of results to display in one page (100 by default)
@@ -20,7 +24,7 @@ const Characters = ({ searchName }) => {
           const response = await axios.get(
             `https://site--marvel-api--kyjktnxc458w.code.run/characters?limit=${limitValue}&skip=${skipValue}&name=${searchName}`
           );
-          console.log(response.data);
+          // console.log(response.data);
           setData(response.data);
           setIsLoading(false);
         } catch (error) {
@@ -29,10 +33,9 @@ const Characters = ({ searchName }) => {
       } else {
         try {
           const response = await axios.get(
-            "https://site--marvel-api--kyjktnxc458w.code.run/characters?skip=0&limit=100"
-            // `https://site--marvel-api--kyjktnxc458w.code.run/characters?limit=${limitValue}&skip=${skipValue}`
+            `https://site--marvel-api--kyjktnxc458w.code.run/characters?limit=${limitValue}&skip=${skipValue}`
           );
-          console.log(response.data);
+          // console.log(response.data);
           setData(response.data);
           setIsLoading(false);
         } catch (error) {
@@ -42,6 +45,23 @@ const Characters = ({ searchName }) => {
     };
     fetchData();
   }, [searchName, limitValue, skipValue]);
+
+  // handle function to change page number on click
+  // const handleClick = (value) => {
+  //   if (value === "minus") {
+  //     if (skipValue > 0) {
+  //       setSkipValue(skipValue - 1);
+  //     }
+  //   } else if (value === "plus") {
+  //     let max = 0;
+  //     data.data.count % limitValue === 0
+  //       ? (max = data.data.count / limitValue)
+  //       : (max = Math.ceil(data.data.count / limitValue));
+  //     if (skipValue < max - 1) {
+  //       setSkipValue(skipValue + 1);
+  //     }
+  //   }
+  // };
 
   return isLoading ? (
     <div className="loading">
@@ -54,13 +74,86 @@ const Characters = ({ searchName }) => {
       <p>Your content is loading, please wait...</p>
     </div>
   ) : (
-    <>
-      <section className="characters">
-        <div className="container">
-          <p>Characters page</p>
+    <section className="characters">
+      <div className="container">
+        {/* data results */}
+        <div className="results">
+          {data.data.results.map((heroe) => {
+            return (
+              <div className="hero" key={heroe._id}>
+                <Link to={`/character/${heroe._id}`} state={{ _id: heroe._id }}>
+                  <img
+                    src={`${heroe.thumbnail.path}/portrait_xlarge.${heroe.thumbnail.extension}`}
+                    alt={heroe.name}
+                  />
+                  <div></div>
+                  {heroe.name.indexOf("(") > 0 ? (
+                    <div>{heroe.name.slice(0, heroe.name.indexOf("("))}</div>
+                  ) : (
+                    <div>{heroe.name}</div>
+                  )}
+                  <div></div>
+                </Link>
+              </div>
+            );
+          })}
         </div>
-      </section>
-    </>
+
+        {/* options to define page number and max results by page */}
+        <div className="pageOptions">
+          <div className="limit">
+            <label htmlFor="results">Number of results by page</label>
+            <input
+              type="number"
+              id="results"
+              min={10}
+              max={100}
+              step={10}
+              placeholder={limitValue}
+              onChange={(event) => {
+                const value = event.target.value;
+                setLimitValue(value);
+              }}
+            />
+          </div>
+          <div className="pages">
+            {/* <img
+                src={before}
+                alt="before sign"
+                onClick={handleClick("minus")}
+              /> */}
+
+            <label htmlFor="pagenum">Page </label>
+            <input
+              type="number"
+              id="pagenum"
+              placeholder={skipValue + 1}
+              min={1}
+              max={
+                data.data.count % limitValue === 0
+                  ? data.data.count / limitValue
+                  : Math.ceil(data.data.count / limitValue)
+              }
+              step={1}
+              onChange={(event) => {
+                const value = event.target.value;
+                setSkipValue((value - 1) * limitValue);
+              }}
+            />
+            <p>{` on ${
+              data.data.count % limitValue === 0
+                ? data.data.count / limitValue
+                : Math.ceil(data.data.count / limitValue)
+            }`}</p>
+            {/* <img
+                src={after}
+                alt="after sign"
+                onClick={handleClick("plus")}
+              /> */}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

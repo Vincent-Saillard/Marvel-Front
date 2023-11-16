@@ -17,21 +17,34 @@ import { useState } from "react";
 const App = () => {
   //state for name/title typed in searchbar
   const [searchName, setSearchName] = useState();
+  //state to update fav list
+  const [favList, setFavList] = useState([]);
 
   return (
     <>
       <Router>
-        <Header setName={setSearchName}></Header>
+        <Header setSearchName={setSearchName}></Header>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
             path="/characters"
             element={<Characters searchName={searchName} />}
           />
-          <Route path="/character/:characterId" element={<CharacterAlone />} />
+          <Route
+            path="/character/:characterId"
+            element={
+              <CharacterAlone favList={favList} setFavList={setFavList} />
+            }
+          />
           <Route path="/comics" element={<Comics searchName={searchName} />} />
-          <Route path="/comic/:comicId" element={<ComicAlone />} />
-          <Route path="/favs" element={<Favs />} />
+          <Route
+            path="/comic/:comicId"
+            element={<ComicAlone favList={favList} setFavList={setFavList} />}
+          />
+          <Route
+            path="/favs"
+            element={<Favs favList={favList} setFavList={setFavList} />}
+          />
         </Routes>
         <Footer></Footer>
       </Router>
