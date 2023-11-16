@@ -6,9 +6,8 @@ const Favs = ({ favList, setFavList }) => {
   let copyFavList = [];
   if (Cookies.get("favList")) {
     copyFavList = JSON.parse(Cookies.get("favList"));
-    console.log(copyFavList);
   }
-
+  console.log(copyFavList);
   let idList = [];
   let dataList = [];
 
@@ -16,6 +15,21 @@ const Favs = ({ favList, setFavList }) => {
     idList = copyFavList.map((favObj) => favObj.id);
     dataList = copyFavList.map((favObj) => favObj.data);
   }
+  // function to remove from fav list on click
+  const handleRemove = (id) => {
+    const index = idList.indexOf(id);
+    idList.splice(index, 1);
+    dataList.splice(index, 1);
+    Cookies.remove("favList");
+    const newFavList = [];
+    for (let i = 0; i < idList.length; i++) {
+      const fav = { id: idList[i], data: dataList[i] };
+      newFavList.push(fav);
+    }
+    const content = JSON.stringify(newFavList);
+    Cookies.set("favList", content, { expires: 7 });
+    setFavList(newFavList);
+  };
 
   return (
     <section className="favs">
@@ -47,6 +61,10 @@ const Favs = ({ favList, setFavList }) => {
                   )}
                   <div></div>
                 </Link>
+                <div className="remove" onClick={() => handleRemove(obj._id)}>
+                  <div className="minus">-</div>
+                  <p>Remove from my fav's</p>
+                </div>
               </div>
             );
           })
