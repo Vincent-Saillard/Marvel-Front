@@ -1,6 +1,7 @@
 import "../favs/favs.css";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import oops from "../../pictures/oops.png";
 
 const Favs = ({ favList, setFavList }) => {
   let copyFavList = [];
@@ -34,43 +35,63 @@ const Favs = ({ favList, setFavList }) => {
   return (
     <section className="favs">
       <div className="container">
-        {copyFavList ? (
-          dataList.map((obj) => {
-            return (
-              <div className="fav" key={obj._id}>
-                <Link
-                  to={obj.title ? `/comic/${obj._id}` : `/character/${obj._id}`}
-                  state={{ _id: obj._id }}
-                >
-                  <img
-                    src={`${obj.thumbnail.path}/portrait_xlarge.${obj.thumbnail.extension}`}
-                    alt={obj.title || obj.name}
-                  />
-
-                  <div></div>
-                  {obj.title ? (
-                    obj.title.indexOf("(") > 0 ? (
-                      <div>{obj.title.slice(0, obj.title.indexOf("("))}</div>
-                    ) : (
-                      <div>{obj.title}</div>
-                    )
-                  ) : obj.name.indexOf("(") > 0 ? (
-                    <div>{obj.name.slice(0, obj.name.indexOf("("))}</div>
-                  ) : (
-                    <div>{obj.name}</div>
-                  )}
-                  <div></div>
-                </Link>
-                <div className="remove" onClick={() => handleRemove(obj._id)}>
-                  <div className="minus">-</div>
-                  <p>Remove from my fav's</p>
+        <h1>
+          =✪= &nbsp;&nbsp;My favourites Comic Books and Characters&nbsp;&nbsp;
+          =✪=
+        </h1>
+        <div className="results">
+          {copyFavList.length > 0 ? (
+            dataList.map((obj) => {
+              return (
+                <div className="group" key={obj._id}>
+                  <div className="fav">
+                    <Link
+                      to={
+                        obj.title
+                          ? `/comic/${obj._id}`
+                          : `/character/${obj._id}`
+                      }
+                      state={{ _id: obj._id }}
+                      className="link"
+                    >
+                      <img
+                        src={`${obj.thumbnail.path}/portrait_uncanny.${obj.thumbnail.extension}`}
+                        alt={obj.title || obj.name}
+                      />
+                      <div className="text">
+                        <div className="left"></div>
+                        {obj.title ? (
+                          obj.title.indexOf("(") > 0 ? (
+                            <div className="title">
+                              {obj.title.slice(0, obj.title.indexOf("("))}
+                            </div>
+                          ) : (
+                            <div className="title">{obj.title}</div>
+                          )
+                        ) : obj.name.indexOf("(") > 0 ? (
+                          <div className="title">
+                            {obj.name.slice(0, obj.name.indexOf("("))}
+                          </div>
+                        ) : (
+                          <div className="title">{obj.name}</div>
+                        )}
+                        <div className="right"></div>
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="remove" onClick={() => handleRemove(obj._id)}>
+                    <p>Remove from fav's</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })
-        ) : (
-          <p>Your Fav list is empty</p>
-        )}
+              );
+            })
+          ) : (
+            <div className="emptyness">
+              <img src={oops} alt="oops sign" className="oops" />
+              <p className="empty">Your Fav list is empty</p>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );

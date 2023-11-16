@@ -1,0 +1,138 @@
+.favs {
+  display: flex;
+  background-color: rgb(44, 133, 189);
+}
+
+.favs .container {
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favs h1 {
+  color: white;
+  font-size: 35px;
+  margin-bottom: 50px;
+}
+
+.favs .link {
+  text-decoration: none;
+}
+
+.favs .results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.favs .group {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 15%;
+}
+
+.favs .fav {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* border: 1px solid green; */
+}
+
+.favs img {
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 10px;
+  border: 3px solid #e7161e;
+  height: 225px;
+  object-fit: cover;
+  box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.5);
+}
+
+.favs .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  line-height: 24px;
+  position: absolute;
+  bottom: -8px;
+}
+
+.favs .title {
+  background-color: #e7161e;
+  height: 24px;
+  overflow: hidden;
+}
+
+.favs .left {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    135deg,
+    rgb(233, 23, 30, 0),
+    rgb(233, 23, 30, 0) 50%,
+    rgb(233, 23, 30, 1) 50%,
+    rgb(233, 23, 30, 1)
+  );
+}
+
+.favs .right {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    135deg,
+    rgb(233, 23, 30, 1),
+    rgb(233, 23, 30, 1) 50%,
+    rgb(233, 23, 30, 0) 50%,
+    rgb(233, 23, 30, 0)
+  );
+}
+
+.favs .remove {
+  display: flex;
+  gap: 5px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  line-height: 24px;
+  text-align: center;
+  height: 24px;
+  width: fit-content;
+  border-radius: 12px;
+  padding: 0px 10px;
+  background: linear-gradient(
+    45deg,
+    rgb(149, 149, 149),
+    rgb(209, 209, 209),
+    rgb(250, 250, 250),
+    rgb(209, 209, 209),
+    rgb(149, 149, 149),
+    rgb(209, 209, 209),
+    rgb(250, 250, 250),
+    rgb(209, 209, 209)
+  );
+}
+
+.favs .remove:hover {
+  cursor: pointer;
+}
+
+.favs .emptyness {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favs .emptyness .oops {
+  border: none;
+  box-shadow: none;
+}
+
+.favs .empty {
+  color: white;
+  font-size: 24px;
+}
