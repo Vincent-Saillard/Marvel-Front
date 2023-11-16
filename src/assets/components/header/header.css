@@ -1,10 +1,15 @@
 header {
   height: 60px;
   display: flex;
+  background-color: rgb(3, 38, 59);
+  box-shadow: 0px 0px 10px rgb(0, 0, 0, 1);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 header .container {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,33 +33,87 @@ header .star {
   height: 40px;
   width: 40px;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 header .search {
   flex: 30%;
   display: flex;
+  position: relative;
+}
+
+header .glass {
+  height: 20px;
+  width: 40px;
+  object-fit: scale-down;
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  border-right: 1px solid white;
 }
 
 header .searchBar {
   flex: 1;
+  height: 30px;
+  border-radius: 15px;
+  background-color: rgb(10, 46, 69);
+  border: none;
+  box-shadow: inset 0px 0px 5px rgb(255, 255, 255, 0.3);
+  color: white;
+  padding-left: 60px;
+  padding-right: 10px;
 }
 
 header nav {
   flex: 20%;
   display: flex;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   height: 100%;
+
+  font-weight: bold;
+  font-size: 24px;
 }
 
-header nav > .link {
-  flex: 1;
+header .border {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  /* border: 1px solid red; */
+  background: linear-gradient(
+    rgb(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255, 1) 50%,
+    rgb(255, 255, 255, 0) 100%
+  );
+  width: 5px;
+}
+
+header .link {
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border: 1px solid yellow;
+  color: white;
+  height: 100%;
+  width: 98%;
+  /* background-color: rgb(3, 38, 59); */
+  /* border: 1px solid yellow; */
 }
 
 header .hidden {
   visibility: hidden;
+}
+
+header .link:hover,
+header .star:hover,
+header .logo:hover {
+  cursor: pointer;
+}
+
+header .link:hover {
+  box-shadow: inset 0px 0px 20px rgb(255, 255, 255, 0.3);
+}
+
+header .star:hover {
+  box-shadow: 0px 0px 20px rgb(255, 255, 255, 0.3);
 }

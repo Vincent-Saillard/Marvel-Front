@@ -9,4 +9,13 @@ body {
 .container {
   width: 1200px;
   margin: 0 auto;
+  border: 1px solid red;
+}
+
+.favs .container,
+.comics .container,
+.comicAlone .container,
+.characters .container,
+.characterAlone .container {
+  margin-top: 60px;
 }
