@@ -39,11 +39,21 @@ const Header = ({ setSearchName }) => {
 
             <nav>
               <div className="border"></div>
-              <Link to="/characters" className="link">
+              <Link
+                to="/characters"
+                className={`link ${
+                  location.pathname === "/characters" && "active"
+                }`}
+              >
                 Heroes
               </Link>
               <div className="border"></div>
-              <Link to="/comics" className="link">
+              <Link
+                to="/comics"
+                className={`link ${
+                  location.pathname === "/comics" && "active"
+                }`}
+              >
                 Comics
               </Link>
               <div className="border"></div>

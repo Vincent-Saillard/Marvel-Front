@@ -64,35 +64,48 @@ const Characters = ({ searchName }) => {
   // };
 
   return isLoading ? (
-    <div className="loading">
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <section className="characters">
+      <div className="container">
+        <div className="loading">
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <p>Your content is loading, please wait...</p>
+        </div>
       </div>
-      <p>Your content is loading, please wait...</p>
-    </div>
+    </section>
   ) : (
     <section className="characters">
       <div className="container">
+        <h1>=✪= &nbsp;&nbsp;Marvel Characters&nbsp;&nbsp; =✪=</h1>
         {/* data results */}
         <div className="results">
           {data.data.results.map((heroe) => {
             return (
               <div className="hero" key={heroe._id}>
-                <Link to={`/character/${heroe._id}`} state={{ _id: heroe._id }}>
+                <Link
+                  to={`/character/${heroe._id}`}
+                  state={{ _id: heroe._id }}
+                  className="link"
+                >
                   <img
                     src={`${heroe.thumbnail.path}/portrait_xlarge.${heroe.thumbnail.extension}`}
                     alt={heroe.name}
                   />
-                  <div></div>
-                  {heroe.name.indexOf("(") > 0 ? (
-                    <div>{heroe.name.slice(0, heroe.name.indexOf("("))}</div>
-                  ) : (
-                    <div>{heroe.name}</div>
-                  )}
-                  <div></div>
+                  <div className="text">
+                    <div className="left"></div>
+                    {heroe.name.indexOf("(") > 0 ? (
+                      <div className="heroeName">
+                        {heroe.name.slice(0, heroe.name.indexOf("("))}
+                      </div>
+                    ) : (
+                      <div className="heroeName">{heroe.name}</div>
+                    )}
+                    <div className="right"></div>
+                  </div>
                 </Link>
               </div>
             );

@@ -1,5 +1,6 @@
 footer {
   display: flex;
+  background-color: rgb(3, 38, 59);
 }
 footer .container {
   margin-top: 30px;
@@ -35,4 +36,13 @@ footer img {
   border-radius: 50%;
   border: 3px solid white;
   background-color: white;
+}
+
+footer img:hover,
+footer a:hover {
+  cursor: pointer;
+}
+
+footer a:hover {
+  color: rgb(92, 183, 239);
 }

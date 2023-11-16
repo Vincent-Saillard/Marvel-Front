@@ -1,0 +1,103 @@
+.characters {
+  display: flex;
+  background-color: rgb(44, 133, 189);
+}
+
+.characters .container {
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.characters h1 {
+  color: white;
+  font-size: 35px;
+  margin-bottom: 50px;
+}
+
+.characters .results {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.characters .hero {
+  flex: 15%;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.characters .link {
+  text-decoration: none;
+}
+
+.characters img {
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 10px;
+  border: 3px solid #e7161e;
+}
+
+.characters .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  line-height: 24px;
+  position: absolute;
+  bottom: -8px;
+}
+
+.characters .heroeName {
+  background-color: #e7161e;
+}
+
+.characters .left {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    135deg,
+    rgb(233, 23, 30, 0),
+    rgb(233, 23, 30, 0) 50%,
+    rgb(233, 23, 30, 1) 50%,
+    rgb(233, 23, 30, 1)
+  );
+}
+
+.characters .right {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    135deg,
+    rgb(233, 23, 30, 1),
+    rgb(233, 23, 30, 1) 50%,
+    rgb(233, 23, 30, 0) 50%,
+    rgb(233, 23, 30, 0)
+  );
+}
+
+.characters .pageOptions {
+  display: flex;
+  gap: 30px;
+}
+
+.characters .pageOptions input {
+  width: 30px;
+  background-color: rgb(142, 195, 228);
+  border: none;
+}
+
+.characters .limit {
+  display: flex;
+  gap: 5px;
+  /* align-items: center; */
+}
+
+.characters .pages {
+  display: flex;
+  gap: 5px;
+  /* align-items: center; */
+}
