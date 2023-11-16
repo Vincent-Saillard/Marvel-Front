@@ -44,35 +44,49 @@ const Comics = ({ searchName }) => {
   }, [searchName, limitValue, skipValue]);
 
   return isLoading ? (
-    <div className="loading">
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <section className="characters">
+      <div className="container">
+        <div className="loading">
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <p>Your content is loading, please wait...</p>
+        </div>
       </div>
-      <p>Your content is loading, please wait...</p>
-    </div>
+    </section>
   ) : (
     <section className="comics">
       <div className="container">
+        <h1>=✪= &nbsp;&nbsp;Marvel Comics&nbsp;&nbsp; =✪=</h1>
         {/* data results */}
         <div className="results">
           {data.data.results.map((comic) => {
             return (
               <div className="comic" key={comic._id}>
-                <Link to={`/comic/${comic._id}`} state={{ _id: comic._id }}>
+                <Link
+                  to={`/comic/${comic._id}`}
+                  state={{ _id: comic._id }}
+                  className="link"
+                >
+                  {/* {console.log(comic.thumbnail.path)} */}
                   <img
-                    src={`${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}`}
+                    src={`${comic.thumbnail.path}/portrait_uncanny.${comic.thumbnail.extension}`}
                     alt={comic.title}
                   />
-                  <div></div>
-                  {comic.title.indexOf("(") > 0 ? (
-                    <div>{comic.title.slice(0, comic.title.indexOf("("))}</div>
-                  ) : (
-                    <div>{comic.title}</div>
-                  )}
-                  <div></div>
+                  <div className="text">
+                    <div className="left"></div>
+                    {comic.title.indexOf("(") > 0 ? (
+                      <div className="comictitle">
+                        {comic.title.slice(0, comic.title.indexOf("("))}
+                      </div>
+                    ) : (
+                      <div className="comictitle">{comic.title}</div>
+                    )}
+                    <div className="right"></div>
+                  </div>
                 </Link>
               </div>
             );

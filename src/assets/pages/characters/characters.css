@@ -19,6 +19,7 @@
 .characters .results {
   display: flex;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .characters .hero {
@@ -38,6 +39,9 @@
   border-top-left-radius: 20px;
   border-bottom-right-radius: 10px;
   border: 3px solid #e7161e;
+  height: 225px;
+  object-fit: cover;
+  box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.5);
 }
 
 .characters .text {
@@ -53,6 +57,8 @@
 
 .characters .heroeName {
   background-color: #e7161e;
+  height: 24px;
+  overflow: hidden;
 }
 
 .characters .left {
@@ -85,7 +91,7 @@
 }
 
 .characters .pageOptions input {
-  width: 30px;
+  width: 40px;
   background-color: rgb(142, 195, 228);
   border: none;
 }

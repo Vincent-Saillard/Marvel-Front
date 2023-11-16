@@ -1,0 +1,109 @@
+.comics {
+  display: flex;
+  background-color: rgb(44, 133, 189);
+}
+
+.comics .container {
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comics h1 {
+  color: white;
+  font-size: 35px;
+  margin-bottom: 50px;
+}
+
+.comics .results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.comics .comic {
+  flex: 15%;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.comics .link {
+  text-decoration: none;
+}
+
+.comics img {
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 10px;
+  border: 3px solid #e7161e;
+  height: 225px;
+  object-fit: cover;
+  box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.5);
+}
+
+.comics .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  line-height: 24px;
+  position: absolute;
+  bottom: -8px;
+}
+
+.comics .comictitle {
+  background-color: #e7161e;
+  height: 24px;
+  overflow: hidden;
+}
+
+.comics .left {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    135deg,
+    rgb(233, 23, 30, 0),
+    rgb(233, 23, 30, 0) 50%,
+    rgb(233, 23, 30, 1) 50%,
+    rgb(233, 23, 30, 1)
+  );
+}
+
+.comics .right {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    135deg,
+    rgb(233, 23, 30, 1),
+    rgb(233, 23, 30, 1) 50%,
+    rgb(233, 23, 30, 0) 50%,
+    rgb(233, 23, 30, 0)
+  );
+}
+
+.comics .pageOptions {
+  display: flex;
+  gap: 30px;
+}
+
+.comics .pageOptions input {
+  width: 40px;
+  background-color: rgb(142, 195, 228);
+  border: none;
+}
+
+.comics .limit {
+  display: flex;
+  gap: 5px;
+  /* align-items: center; */
+}
+
+.comics .pages {
+  display: flex;
+  gap: 5px;
+  /* align-items: center; */
+}

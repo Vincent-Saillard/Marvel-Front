@@ -45,77 +45,104 @@ const CharacterAlone = ({ favList, setFavList }) => {
   }, [isLoading]);
 
   return isLoading ? (
-    <div className="loading">
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <section className="characterAlone">
+      <div className="container">
+        <div className="loading">
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <p>Your content is loading, please wait...</p>
+        </div>
       </div>
-      <p>Your content is loading, please wait...</p>
-    </div>
+    </section>
   ) : (
     <section className="characterAlone">
       <div className="container">
-        <div className="heroe">
+        <h1>
+          =✪= &nbsp;&nbsp;
+          {dataCharacter.data.name.indexOf("(") > 0
+            ? dataCharacter.data.name.slice(
+                0,
+                dataCharacter.data.name.indexOf("(")
+              )
+            : dataCharacter.data.name}
+          &nbsp;&nbsp; =✪=
+        </h1>
+        <div className="heroeSelected">
           <img
             src={`${dataCharacter.data.thumbnail.path}/portrait_incredible.${dataCharacter.data.thumbnail.extension}`}
             alt={dataCharacter.data.name}
           />
-          <div></div>
-          {dataCharacter.data.name.indexOf("(") > 0 ? (
-            <div>
-              {dataCharacter.data.name.slice(
-                0,
-                dataCharacter.data.name.indexOf("(")
-              )}
-            </div>
-          ) : (
-            <div>{dataCharacter.data.name}</div>
-          )}
-          <div></div>
-          {idList.includes(dataCharacter.data._id) ? (
-            <div className="toFavs">
-              <p>
-                <span>★</span>Already in your Fav's
-              </p>
-            </div>
-          ) : (
-            <div
-              className="toFavs"
-              onClick={() => {
-                const newFavList = [...favList];
-                newFavList.push({
-                  id: dataCharacter.data._id,
-                  data: dataCharacter.data,
-                });
-                setFavList(newFavList);
-                const content = JSON.stringify(newFavList);
-                Cookies.remove("favList");
-                Cookies.set("favList", content, { expires: 7 });
-              }}
-            >
-              <p>
-                <span>★</span>Add to fav's
-              </p>
-            </div>
-          )}
-          {dataCharacter.data.description && (
-            <div className="description">{dataCharacter.data.description}</div>
-          )}
-        </div>
-        <div className="comics">
-          {dataComics.data.comics.map((comic) => {
-            return (
-              <div className="comic" key={comic._id}>
-                <img
-                  src={`${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}`}
-                  alt={comic.title}
-                />
-                <div>{comic.title}</div>
+          <div className="text">
+            <div className="left"></div>
+            {dataCharacter.data.name.indexOf("(") > 0 ? (
+              <div className="heroeName">
+                {dataCharacter.data.name.slice(
+                  0,
+                  dataCharacter.data.name.indexOf("(")
+                )}
               </div>
-            );
-          })}
+            ) : (
+              <div className="heroeName">{dataCharacter.data.name}</div>
+            )}
+            <div className="right"></div>
+          </div>
+        </div>
+        {idList.includes(dataCharacter.data._id) ? (
+          <div className="alreadyToFavs">
+            <p>
+              <span>★</span>Already in your Fav's
+            </p>
+          </div>
+        ) : (
+          <div
+            className="toFavs"
+            onClick={() => {
+              const newFavList = [...favList];
+              newFavList.push({
+                id: dataCharacter.data._id,
+                data: dataCharacter.data,
+              });
+              setFavList(newFavList);
+              const content = JSON.stringify(newFavList);
+              Cookies.remove("favList");
+              Cookies.set("favList", content, { expires: 7 });
+            }}
+          >
+            <p>
+              <span>★</span>Add to fav's
+            </p>
+          </div>
+        )}
+        {dataCharacter.data.description && (
+          <div className="description">{dataCharacter.data.description}</div>
+        )}
+        <p className="subtitle">
+          This character can be found in the following comics
+        </p>
+        <div className="carousel">
+          <div className="carouselLeft"></div>
+          <div className="comiclist">
+            {dataComics.data.comics.map((comic) => {
+              return (
+                <div className="comicOn" key={comic._id}>
+                  <img
+                    src={`${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}`}
+                    alt={comic.title}
+                  />
+                  <div className="text">
+                    <div className="left"></div>
+                    <div className="comictitle">{comic.title}</div>
+                    <div className="right"></div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="carouselRight"></div>
         </div>
       </div>
     </section>

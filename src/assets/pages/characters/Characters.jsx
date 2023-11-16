@@ -92,7 +92,7 @@ const Characters = ({ searchName }) => {
                   className="link"
                 >
                   <img
-                    src={`${heroe.thumbnail.path}/portrait_xlarge.${heroe.thumbnail.extension}`}
+                    src={`${heroe.thumbnail.path}/portrait_uncanny.${heroe.thumbnail.extension}`}
                     alt={heroe.name}
                   />
                   <div className="text">
