@@ -190,12 +190,16 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 1;
+  width: 150px;
 }
 
 .characterAlone .comicOn img {
   border-top-left-radius: 20px;
   border-bottom-right-radius: 10px;
   border: 3px solid #e7161e;
+  height: 225px;
+
+  object-fit: cover;
 }
 
 .characterAlone .comicOn .text {
