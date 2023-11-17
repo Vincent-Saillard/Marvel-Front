@@ -116,9 +116,27 @@ header .logo:hover {
 }
 
 header .link:hover {
-  box-shadow: inset 0px 0px 20px rgb(255, 255, 255, 0.3);
+  animation: lightIn 0.5s forwards;
+}
+
+@keyframes lightIn {
+  from {
+    box-shadow: none;
+  }
+  to {
+    box-shadow: inset 0px 0px 20px rgb(255, 255, 255, 0.3);
+  }
 }
 
 header .star:hover {
-  box-shadow: 0px 0px 20px rgb(255, 255, 255, 0.3);
+  animation: lightAround 0.5s forwards;
+}
+
+@keyframes lightAround {
+  from {
+    box-shadow: none;
+  }
+  to {
+    box-shadow: 0px 0px 20px rgb(255, 255, 255, 0.3);
+  }
 }
