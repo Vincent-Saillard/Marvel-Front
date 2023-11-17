@@ -51,7 +51,7 @@
   overflow: hidden;
 }
 
-.characterAlone .left {
+.characterAlone .heroeSelected .left {
   width: 24px;
   height: 24px;
   background: linear-gradient(
@@ -63,7 +63,7 @@
   );
 }
 
-.characterAlone .right {
+.characterAlone .heroeSelected .right {
   width: 24px;
   height: 24px;
   background: linear-gradient(
@@ -161,6 +161,7 @@
   position: relative;
   /* border: 1px solid green; */
   height: fit-content;
+  /* background-color: rgb(44, 133, 189); */
 }
 
 .characterAlone .carouselLeft {
@@ -229,7 +230,7 @@
   width: 60%;
 }
 
-.characterAlone .left {
+.characterAlone .comicOn .left {
   width: 20px;
   height: 20px;
   background: linear-gradient(
@@ -241,7 +242,7 @@
   );
 }
 
-.characterAlone .right {
+.characterAlone .comicOn .right {
   width: 20px;
   height: 20px;
   background: linear-gradient(

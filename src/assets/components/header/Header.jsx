@@ -4,8 +4,9 @@ import star from "../../pictures/star.png";
 import glass from "../../pictures/glass.png";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 
-const Header = ({ setSearchName }) => {
+const Header = ({ setSearchName, token, setRegisterModalState }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -58,9 +59,14 @@ const Header = ({ setSearchName }) => {
               </Link>
               <div className="border"></div>
             </nav>
-            <Link to="/favs">
+            <div
+              className="toFavs"
+              onClick={() => {
+                token ? navigate("/favs") : setRegisterModalState(true);
+              }}
+            >
               <img src={star} alt="captain america's star" className="star" />
-            </Link>
+            </div>
           </div>
         </div>
       </header>

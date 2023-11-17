@@ -1,0 +1,228 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(44, 133, 189);
+  background-image: url("../../pictures/fond.png");
+  height: fit-content;
+  width: 300px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px rgb(0, 0, 0, 1);
+  margin-top: 200px;
+  border: 3px solid white;
+  justify-content: center;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login .cross {
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
+  font-weight: bolder;
+  line-height: 20px;
+}
+
+.login .cross:hover {
+  cursor: pointer;
+}
+
+.login .titleBanner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.login .left {
+  height: 28px;
+  width: 28px;
+  background: linear-gradient(
+    135deg,
+    rgb(233, 23, 30, 0),
+    rgb(233, 23, 30, 0) 50%,
+    rgb(233, 23, 30, 1) 50%,
+    rgb(233, 23, 30, 1)
+  );
+}
+
+.login .title {
+  color: white;
+  background-color: rgb(233, 23, 30);
+  text-align: center;
+  line-height: 28px;
+  flex: 1;
+  font-size: 20px;
+}
+
+.login .right {
+  height: 28px;
+  width: 28px;
+  background: linear-gradient(
+    135deg,
+    rgb(233, 23, 30, 1),
+    rgb(233, 23, 30, 1) 50%,
+    rgb(233, 23, 30, 0) 50%,
+    rgb(233, 23, 30, 0)
+  );
+}
+
+.login .pass {
+  display: flex;
+  position: relative;
+}
+.login .pass .eye {
+  position: absolute;
+  right: 7px;
+  top: 6px;
+}
+
+.login .already:hover,
+.login .pass .eye:hover {
+  cursor: pointer;
+}
+
+.login .pass input {
+  width: 100%;
+}
+.login input:not(.submit) {
+  height: 24px;
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 0px 7px;
+}
+
+.login .already,
+.login .errormessage {
+  color: white;
+  background-color: rgb(233, 23, 30, 0.5);
+  font-size: 14px;
+  line-height: 18px;
+  border-radius: 9px;
+  padding: 0px 9px;
+  text-align: center;
+}
+
+.login .submit {
+  height: 28px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 20px;
+  font-size: 20px;
+  background: linear-gradient(
+    45deg,
+    rgb(255, 174, 0),
+    gold,
+    rgb(255, 240, 153),
+    gold,
+    rgb(255, 166, 0),
+    gold,
+    rgb(255, 240, 153),
+    gold
+  );
+  font-family: "Marvel", sans-serif;
+}
+
+.login .submit:hover {
+  cursor: pointer;
+  animation: glow 1s forwards;
+}
+
+@keyframes glow {
+  0% {
+    background: linear-gradient(
+      45deg,
+      rgb(255, 174, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 166, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold
+    );
+  }
+  16% {
+    background: linear-gradient(
+      45deg,
+      gold,
+      rgb(255, 174, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 166, 0),
+      gold,
+      rgb(255, 240, 153)
+    );
+  }
+  33% {
+    background: linear-gradient(
+      45deg,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 174, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 166, 0),
+      gold
+    );
+  }
+  49% {
+    background: linear-gradient(
+      45deg,
+      gold,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 174, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 166, 0)
+    );
+  }
+  66% {
+    background: linear-gradient(
+      45deg,
+      rgb(255, 166, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 174, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold
+    );
+  }
+  82% {
+    background: linear-gradient(
+      45deg,
+      gold,
+      rgb(255, 166, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 174, 0),
+      gold,
+      rgb(255, 240, 153)
+    );
+  }
+  100% {
+    background: linear-gradient(
+      45deg,
+      rgb(255, 174, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold,
+      rgb(255, 166, 0),
+      gold,
+      rgb(255, 240, 153),
+      gold
+    );
+  }
+}

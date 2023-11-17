@@ -36,6 +36,19 @@
   text-decoration: none;
 }
 
+.characters .link:hover {
+  animation: zoomIn 0.5s forwards;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
 .characters img {
   border-top-left-radius: 20px;
   border-bottom-right-radius: 10px;

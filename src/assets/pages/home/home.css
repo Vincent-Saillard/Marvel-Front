@@ -25,7 +25,7 @@ main .back {
 }
 
 main .front {
-  height: 100px;
+  height: 200px;
   width: 120vw;
   left: -30px;
   position: absolute;
@@ -106,12 +106,12 @@ main .right {
 main h1 {
   font-size: 100px;
   text-align: center;
-  animation: zoomIn 1s forwards;
+  animation: zoomInmain 1s forwards;
   animation-delay: 0.3s;
   opacity: 0;
 }
 
-@keyframes zoomIn {
+@keyframes zoomInmain {
   from {
     opacity: 0;
     transform: scale(0.5);
@@ -120,4 +120,49 @@ main h1 {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+main .identification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  gap: 50px;
+}
+
+main button {
+  height: 50px;
+  width: 300px;
+  font-size: 30px;
+  font-family: "Marvel", sans-serif;
+  border-radius: 25px;
+  border: none;
+  background-color: #e7161e;
+  color: white;
+}
+
+main button:hover {
+  cursor: pointer;
+  animation: shadowIn 0.5s forwards;
+}
+
+@keyframes shadowIn {
+  from {
+    box-shadow: none;
+  }
+  to {
+    box-shadow: inset 0px 0px 15px rgb(0, 0, 0, 1);
+  }
+}
+
+main .modal {
+  background-color: rgb(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
 }

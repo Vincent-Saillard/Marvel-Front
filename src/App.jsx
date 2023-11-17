@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import axios from "axios";
 // Pages
 import Home from "./assets/pages/home/Home";
 import Characters from "./assets/pages/characters/Characters";
@@ -15,17 +15,39 @@ import "./App.css";
 import { useState } from "react";
 
 const App = () => {
-  //state for name/title typed in searchbar
+  // state for name/title typed in searchbar
   const [searchName, setSearchName] = useState();
-  //state to update fav list
+  // state to update fav list
   const [favList, setFavList] = useState([]);
+  // state for user token after login or register
+  const [token, setToken] = useState();
+  // state for modal opening/closing Register
+  const [registerModalState, setRegisterModalState] = useState(false);
+  // state for modal opening/closing login
+  const [loginModalState, setLoginModalState] = useState(false);
 
   return (
     <>
       <Router>
-        <Header setSearchName={setSearchName}></Header>
+        <Header
+          setSearchName={setSearchName}
+          token={token}
+          setRegisterModalState={setRegisterModalState}
+        ></Header>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                token={token}
+                setToken={setToken}
+                registerModalState={registerModalState}
+                setRegisterModalState={setRegisterModalState}
+                loginModalState={loginModalState}
+                setLoginModalState={setLoginModalState}
+              />
+            }
+          />
           <Route
             path="/characters"
             element={<Characters searchName={searchName} />}
@@ -43,7 +65,14 @@ const App = () => {
           />
           <Route
             path="/favs"
-            element={<Favs favList={favList} setFavList={setFavList} />}
+            element={
+              <Favs
+                favList={favList}
+                setFavList={setFavList}
+                token={token}
+                setRegisterModalState={setRegisterModalState}
+              />
+            }
           />
         </Routes>
         <Footer></Footer>
