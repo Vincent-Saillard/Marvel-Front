@@ -62,7 +62,12 @@ const Header = ({ setSearchName, token, setRegisterModalState }) => {
             <div
               className="toFavs"
               onClick={() => {
-                token ? navigate("/favs") : setRegisterModalState(true);
+                if (token) {
+                  navigate("/favs");
+                } else {
+                  setRegisterModalState(true);
+                  navigate("/");
+                }
               }}
             >
               <img src={star} alt="captain america's star" className="star" />
