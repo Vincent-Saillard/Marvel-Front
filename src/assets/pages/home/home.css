@@ -56,7 +56,20 @@ main .text > div {
   padding-left: 100px;
   display: flex;
   margin-bottom: 20px;
-  transform: rotate(-5deg);
+
+  animation: rotateIn 1s forwards;
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(5deg);
+    transform-origin: bottom left;
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-5deg);
+  }
 }
 
 main p {
@@ -93,4 +106,18 @@ main .right {
 main h1 {
   font-size: 100px;
   text-align: center;
+  animation: zoomIn 1s forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

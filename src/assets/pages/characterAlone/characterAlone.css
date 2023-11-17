@@ -134,6 +134,14 @@
   width: 300px;
   text-align: justify;
   line-height: 24px;
+  background: linear-gradient(
+    rgb(44, 133, 189, 0),
+    rgb(44, 133, 189),
+    rgb(44, 133, 189, 0)
+  );
+  padding: 20px 10px;
+  border-left: 2px solid goldenrod;
+  border-right: 2px solid goldenrod;
 }
 
 /* -------SIMPLE CAROUSEL--------- */
