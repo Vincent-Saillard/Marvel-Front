@@ -1,6 +1,7 @@
 .characterAlone {
   display: flex;
   background-color: rgb(44, 133, 189);
+  background-image: url("../../pictures/fond.png");
 }
 
 .characterAlone .container {
