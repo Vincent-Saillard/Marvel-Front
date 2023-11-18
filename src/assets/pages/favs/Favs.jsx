@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
+const Favs = ({ token, setRegisterModalState }) => {
   const navigate = useNavigate();
 
   // state to load page
@@ -55,7 +55,7 @@ const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
             },
           }
         );
-        console.log(response.data.message);
+
         setRefresh(!refresh);
       } catch (error) {
         console.log(error.message);
@@ -63,35 +63,6 @@ const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
     };
     fetchData();
   };
-
-  // --------------FAVS IN COOKIES-------------
-  // let copyFavList = [];
-  // if (Cookies.get("favList")) {
-  //   copyFavList = JSON.parse(Cookies.get("favList"));
-  // }
-  // console.log(copyFavList);
-  // let idList = [];
-  // let dataList = [];
-
-  // if (copyFavList) {
-  //   idList = copyFavList.map((favObj) => favObj.id);
-  //   dataList = copyFavList.map((favObj) => favObj.data);
-  // }
-  // // function to remove from fav list on click
-  // const handleRemove = (id) => {
-  //   const index = idList.indexOf(id);
-  //   idList.splice(index, 1);
-  //   dataList.splice(index, 1);
-  //   Cookies.remove("favList");
-  //   const newFavList = [];
-  //   for (let i = 0; i < idList.length; i++) {
-  //     const fav = { id: idList[i], data: dataList[i] };
-  //     newFavList.push(fav);
-  //   }
-  //   const content = JSON.stringify(newFavList);
-  //   Cookies.set("favList", content, { expires: 7 });
-  //   setFavList(newFavList);
-  // };
 
   // if (token) {
   return isLoading ? (
@@ -117,7 +88,6 @@ const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
           <span>=✪=</span>
         </h1>
         <div className="results">
-          {console.log(data)}
           {data.length > 0 ? (
             data.map((obj) => {
               return (
@@ -169,72 +139,10 @@ const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
               <p className="empty">Your Fav list is empty</p>
             </div>
           )}
-
-          {/* ------------FAVS IN COOKIES------------- */}
-          {/* {copyFavList.length > 0 ? (
-              dataList.map((obj) => {
-                return (
-                  <div className="group" key={obj._id}>
-                    <div className="fav">
-                      <Link
-                        to={
-                          obj.title
-                            ? `/comic/${obj._id}`
-                            : `/character/${obj._id}`
-                        }
-                        state={{ _id: obj._id }}
-                        className="link"
-                      >
-                        <img
-                          src={`${obj.thumbnail.path}/portrait_uncanny.${obj.thumbnail.extension}`}
-                          alt={obj.title || obj.name}
-                        />
-                        <div className="text">
-                          <div className="left"></div>
-                          {obj.title ? (
-                            obj.title.indexOf("(") > 0 ? (
-                              <div className="title">
-                                {obj.title.slice(0, obj.title.indexOf("("))}
-                              </div>
-                            ) : (
-                              <div className="title">{obj.title}</div>
-                            )
-                          ) : obj.name.indexOf("(") > 0 ? (
-                            <div className="title">
-                              {obj.name.slice(0, obj.name.indexOf("("))}
-                            </div>
-                          ) : (
-                            <div className="title">{obj.name}</div>
-                          )}
-                          <div className="right"></div>
-                        </div>
-                      </Link>
-                    </div>
-                    <div
-                      className="remove"
-                      onClick={() => handleRemove(obj._id)}
-                    >
-                      <p>Remove from fav's</p>
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <div className="emptyness">
-                <img src={oops} alt="oops sign" className="oops" />
-                <p className="empty">Your Fav list is empty</p>
-              </div>
-            )} */}
         </div>
       </div>
     </section>
   );
-  // } else {
-  //   setTimeout(() => {
-  //     navigate("/");
-  //     setRegisterModalState(true);
-  //   }, 2000);
-  // }
 };
 
 export default Favs;

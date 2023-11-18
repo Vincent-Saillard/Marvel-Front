@@ -197,7 +197,6 @@ const CharacterAlone = ({ token }) => {
           <div className="carouselLeft"></div>
           <div className="comiclist">
             {dataComics.data.comics.map((comic) => {
-              console.log(comic);
               return (
                 <div className="comicOn" key={comic._id}>
                   {comic.thumbnail.path.includes("image_not_available") ? (

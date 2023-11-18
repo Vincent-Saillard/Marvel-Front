@@ -22,7 +22,7 @@ const Comics = ({ searchName }) => {
           const response = await axios.get(
             `https://site--marvel-api--kyjktnxc458w.code.run/comics?limit=${limitValue}&skip=${skipValue}&title=${searchName}`
           );
-          // console.log(response.data);
+
           setData(response.data);
           setIsLoading(false);
         } catch (error) {
@@ -33,7 +33,7 @@ const Comics = ({ searchName }) => {
           const response = await axios.get(
             `https://site--marvel-api--kyjktnxc458w.code.run/comics?limit=${limitValue}&skip=${skipValue}`
           );
-          // console.log(response.data);
+
           setData(response.data);
           setIsLoading(false);
         } catch (error) {
@@ -72,7 +72,6 @@ const Comics = ({ searchName }) => {
                   state={{ _id: comic._id }}
                   className="link"
                 >
-                  {/* {console.log(comic.thumbnail.path)} */}
                   {comic.thumbnail.path.includes("image_not_available") ? (
                     <img src={fake} alt="fake cover of comic" />
                   ) : (
@@ -117,12 +116,6 @@ const Comics = ({ searchName }) => {
             />
           </div>
           <div className="pages">
-            {/* <img
-                src={before}
-                alt="before sign"
-                onClick={handleClick("minus")}
-              /> */}
-
             <label htmlFor="pagenum">Page </label>
             <input
               type="number"
@@ -145,11 +138,6 @@ const Comics = ({ searchName }) => {
                 ? data.data.count / limitValue
                 : Math.ceil(data.data.count / limitValue)
             }`}</p>
-            {/* <img
-                src={after}
-                alt="after sign"
-                onClick={handleClick("plus")}
-              /> */}
           </div>
         </div>
       </div>

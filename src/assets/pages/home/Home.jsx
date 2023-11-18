@@ -1,6 +1,5 @@
 import "../home/home.css";
 import banner from "../../pictures/banner.jpg";
-import { useState } from "react";
 import Cookies from "js-cookie";
 
 // Components

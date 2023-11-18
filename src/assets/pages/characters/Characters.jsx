@@ -4,9 +4,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import silhouette from "../../pictures/silhouette.jpg";
 
-// import before from "../../pictures/before.png";
-// import after from "../../pictures/after.png";
-
 const Characters = ({ searchName }) => {
   // state for limit value of results to display in one page (100 by default)
   const [limitValue, setLimitValue] = useState(100);
@@ -25,7 +22,7 @@ const Characters = ({ searchName }) => {
           const response = await axios.get(
             `https://site--marvel-api--kyjktnxc458w.code.run/characters?limit=${limitValue}&skip=${skipValue}&name=${searchName}`
           );
-          // console.log(response.data);
+
           setData(response.data);
           setIsLoading(false);
         } catch (error) {
@@ -36,7 +33,7 @@ const Characters = ({ searchName }) => {
           const response = await axios.get(
             `https://site--marvel-api--kyjktnxc458w.code.run/characters?limit=${limitValue}&skip=${skipValue}`
           );
-          // console.log(response.data);
+
           setData(response.data);
           setIsLoading(false);
         } catch (error) {
@@ -46,23 +43,6 @@ const Characters = ({ searchName }) => {
     };
     fetchData();
   }, [searchName, limitValue, skipValue]);
-
-  // handle function to change page number on click
-  // const handleClick = (value) => {
-  //   if (value === "minus") {
-  //     if (skipValue > 0) {
-  //       setSkipValue(skipValue - 1);
-  //     }
-  //   } else if (value === "plus") {
-  //     let max = 0;
-  //     data.data.count % limitValue === 0
-  //       ? (max = data.data.count / limitValue)
-  //       : (max = Math.ceil(data.data.count / limitValue));
-  //     if (skipValue < max - 1) {
-  //       setSkipValue(skipValue + 1);
-  //     }
-  //   }
-  // };
 
   return isLoading ? (
     <section className="characters">
@@ -136,12 +116,6 @@ const Characters = ({ searchName }) => {
             />
           </div>
           <div className="pages">
-            {/* <img
-                src={before}
-                alt="before sign"
-                onClick={handleClick("minus")}
-              /> */}
-
             <label htmlFor="pagenum">Page </label>
             <input
               type="number"
@@ -164,11 +138,6 @@ const Characters = ({ searchName }) => {
                 ? data.data.count / limitValue
                 : Math.ceil(data.data.count / limitValue)
             }`}</p>
-            {/* <img
-                src={after}
-                alt="after sign"
-                onClick={handleClick("plus")}
-              /> */}
           </div>
         </div>
       </div>

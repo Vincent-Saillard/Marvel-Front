@@ -60,20 +60,12 @@ const App = () => {
           <Route path="/comics" element={<Comics searchName={searchName} />} />
           <Route
             path="/comic/:comicId"
-            element={
-              <ComicAlone
-                favList={favList}
-                setFavList={setFavList}
-                token={token}
-              />
-            }
+            element={<ComicAlone token={token} />}
           />
           <Route
             path="/favs"
             element={
               <Favs
-                favList={favList}
-                setFavList={setFavList}
                 token={token}
                 setRegisterModalState={setRegisterModalState}
               />

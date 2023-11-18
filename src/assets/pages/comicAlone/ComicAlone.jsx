@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import fake from "../../pictures/fake-cover.jpg";
-// import Cookies from "js-cookie";
 
-const ComicAlone = ({ favList, setFavList, token }) => {
+const ComicAlone = ({ token }) => {
   // state to load page
   const [isLoading, setIsLoading] = useState(true);
   // state for data recieved concerning comic alone
@@ -21,10 +20,6 @@ const ComicAlone = ({ favList, setFavList, token }) => {
 
   const [counter, setCounter] = useState(0);
 
-  // determine if character is already in fav or not
-  // const copyFavList = [...favList];
-  // const idList = copyFavList.map((favObject) => favObject.id);
-
   useEffect(() => {
     const comicId = location.state._id;
 
@@ -34,7 +29,6 @@ const ComicAlone = ({ favList, setFavList, token }) => {
           `https://site--marvel-api--kyjktnxc458w.code.run/comic/${comicId}`
         );
         setDataComic(response.data);
-        console.log(dataComic);
 
         // if user is connected get all favs if not favs are empty
         if (token) {
@@ -91,7 +85,7 @@ const ComicAlone = ({ favList, setFavList, token }) => {
               },
             }
           );
-          console.log(response.data);
+
           setRefresh(!refresh);
           setIsInList(true);
         } catch (error) {
