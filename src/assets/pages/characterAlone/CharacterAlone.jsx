@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "../characterAlone/characterAlone.css";
 import axios from "axios";
+import silhouette from "../../pictures/silhouette.jpg";
+import fake from "../../pictures/fake-cover.jpg";
 import { useLocation } from "react-router-dom";
 // import Cookies from "js-cookie";
 
@@ -144,10 +146,15 @@ const CharacterAlone = ({ token }) => {
           &nbsp;&nbsp; =✪=
         </h1>
         <div className="heroeSelected">
-          <img
-            src={`${dataCharacter.data.thumbnail.path}/portrait_incredible.${dataCharacter.data.thumbnail.extension}`}
-            alt={dataCharacter.data.name}
-          />
+          {dataCharacter.data.thumbnail.path.includes("image_not_available") ? (
+            <img src={silhouette} alt="silhouette of unknown hero" />
+          ) : (
+            <img
+              src={`${dataCharacter.data.thumbnail.path}/portrait_incredible.${dataCharacter.data.thumbnail.extension}`}
+              alt={dataCharacter.data.name}
+            />
+          )}
+
           <div className="text">
             <div className="left"></div>
             {dataCharacter.data.name.indexOf("(") > 0 ? (
@@ -190,12 +197,18 @@ const CharacterAlone = ({ token }) => {
           <div className="carouselLeft"></div>
           <div className="comiclist">
             {dataComics.data.comics.map((comic) => {
+              console.log(comic);
               return (
                 <div className="comicOn" key={comic._id}>
-                  <img
-                    src={`${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}`}
-                    alt={comic.title}
-                  />
+                  {comic.thumbnail.path.includes("image_not_available") ? (
+                    <img src={fake} alt="fake cover of comic" />
+                  ) : (
+                    <img
+                      src={`${comic.thumbnail.path}/portrait_xlarge.${comic.thumbnail.extension}`}
+                      alt={comic.title}
+                    />
+                  )}
+
                   <div className="text">
                     <div className="left"></div>
                     <div className="comictitle">{comic.title}</div>

@@ -2,6 +2,7 @@ import "../comicAlone/comicAlone.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import fake from "../../pictures/fake-cover.jpg";
 // import Cookies from "js-cookie";
 
 const ComicAlone = ({ favList, setFavList, token }) => {
@@ -133,10 +134,15 @@ const ComicAlone = ({ favList, setFavList, token }) => {
         </h1>
         <div className="content">
           <div className="comicSelected">
-            <img
-              src={`${dataComic.data.thumbnail.path}/portrait_incredible.${dataComic.data.thumbnail.extension}`}
-              alt={dataComic.data.title}
-            />
+            {dataComic.data.thumbnail.path.includes("image_not_available") ? (
+              <img src={fake} alt="fake cover of comic" />
+            ) : (
+              <img
+                src={`${dataComic.data.thumbnail.path}/portrait_incredible.${dataComic.data.thumbnail.extension}`}
+                alt={dataComic.data.title}
+              />
+            )}
+
             <div className="text">
               <div className="left"></div>
               {dataComic.data.title.indexOf("(") > 0 ? (

@@ -1,6 +1,7 @@
 import "../comics/comics.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import fake from "..//../pictures/fake-cover.jpg";
 import { Link } from "react-router-dom";
 
 const Comics = ({ searchName }) => {
@@ -72,10 +73,15 @@ const Comics = ({ searchName }) => {
                   className="link"
                 >
                   {/* {console.log(comic.thumbnail.path)} */}
-                  <img
-                    src={`${comic.thumbnail.path}/portrait_uncanny.${comic.thumbnail.extension}`}
-                    alt={comic.title}
-                  />
+                  {comic.thumbnail.path.includes("image_not_available") ? (
+                    <img src={fake} alt="fake cover of comic" />
+                  ) : (
+                    <img
+                      src={`${comic.thumbnail.path}/portrait_uncanny.${comic.thumbnail.extension}`}
+                      alt={comic.title}
+                    />
+                  )}
+
                   <div className="text">
                     <div className="left"></div>
                     {comic.title.indexOf("(") > 0 ? (

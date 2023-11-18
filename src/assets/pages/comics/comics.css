@@ -54,6 +54,7 @@
   border-bottom-right-radius: 10px;
   border: 3px solid #e7161e;
   height: 225px;
+  width: 150px;
   object-fit: cover;
   box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.5);
 }

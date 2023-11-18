@@ -2,6 +2,7 @@ import "../characters/characters.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import silhouette from "../../pictures/silhouette.jpg";
 
 // import before from "../../pictures/before.png";
 // import after from "../../pictures/after.png";
@@ -91,10 +92,15 @@ const Characters = ({ searchName }) => {
                   state={{ _id: heroe._id }}
                   className="link"
                 >
-                  <img
-                    src={`${heroe.thumbnail.path}/portrait_uncanny.${heroe.thumbnail.extension}`}
-                    alt={heroe.name}
-                  />
+                  {heroe.thumbnail.path.includes("image_not_available") ? (
+                    <img src={silhouette} alt="silhouette of unknown hero" />
+                  ) : (
+                    <img
+                      src={`${heroe.thumbnail.path}/portrait_uncanny.${heroe.thumbnail.extension}`}
+                      alt={heroe.name}
+                    />
+                  )}
+
                   <div className="text">
                     <div className="left"></div>
                     {heroe.name.indexOf("(") > 0 ? (

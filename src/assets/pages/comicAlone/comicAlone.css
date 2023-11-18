@@ -33,6 +33,8 @@
 .comicAlone .comicSelected img {
   border-top-left-radius: 20px;
   border-bottom-right-radius: 10px;
+  height: 324px;
+  width: 216px;
   border: 3px solid #e7161e;
   object-fit: cover;
   box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.5);
