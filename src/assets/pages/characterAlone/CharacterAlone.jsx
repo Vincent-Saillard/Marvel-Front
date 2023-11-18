@@ -2,21 +2,26 @@ import { useEffect, useState } from "react";
 import "../characterAlone/characterAlone.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
-const CharacterAlone = ({ favList, setFavList }) => {
+const CharacterAlone = ({ favList, setFavList, token }) => {
   // state to load page
   const [isLoading, setIsLoading] = useState(true);
   // state for data recieved concerning character alone
   const [dataCharacter, setDataCharacter] = useState();
   // state for data recieved concerning list of comics where character appears
   const [dataComics, setDataComics] = useState();
+  // state for fav data
+  const [dataFavs, setDataFavs] = useState();
 
   const location = useLocation();
 
+  const [refresh, setRefresh] = useState(false);
+
+  const [isInList, setIsInList] = useState(false);
   // determine if character is already in fav or not
-  const copyFavList = [...favList];
-  const idList = copyFavList.map((favObject) => favObject.id);
+  // const copyFavList = [...favList];
+  // const idList = copyFavList.map((favObject) => favObject.id);
 
   useEffect(() => {
     const characterId = location.state._id;
@@ -27,22 +32,72 @@ const CharacterAlone = ({ favList, setFavList }) => {
         const responseInfos = await axios.get(
           `https://site--marvel-api--kyjktnxc458w.code.run/character/${characterId}`
         );
+
         setDataCharacter(responseInfos.data);
-        console.log(dataCharacter);
 
         const responseComics = await axios.get(
           `https://site--marvel-api--kyjktnxc458w.code.run/comics/${characterId}`
         );
+
         setDataComics(responseComics.data);
-        console.log(dataComics);
+
+        // sending a third request to get fav list
+
+        const responseFavs = await axios.get(
+          "https://site--marvel-api--kyjktnxc458w.code.run/favs",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setDataFavs(responseFavs.data.allFavs);
+        // determine if character is already in fav or not
+
+        if (dataFavs) {
+          const idList = dataFavs.map((fav) => fav.itemId);
+
+          if (idList.includes(dataCharacter.data._id) === true) {
+            setIsInList(true);
+          }
+        }
 
         setIsLoading(false);
+        console.log(isInList);
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-  }, [isLoading]);
+  }, [refresh]);
+
+  const handleClickAdd = (id) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "https://site--marvel-api--kyjktnxc458w.code.run/favs",
+          {
+            itemId: dataCharacter.data._id,
+            name: dataCharacter.data.name,
+            path: dataCharacter.data.thumbnail.path,
+            extension: dataCharacter.data.thumbnail.extension,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setRefresh(!refresh);
+        setIsInList(true);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  };
 
   return isLoading ? (
     <section className="characterAlone">
@@ -91,7 +146,7 @@ const CharacterAlone = ({ favList, setFavList }) => {
             <div className="right"></div>
           </div>
         </div>
-        {idList.includes(dataCharacter.data._id) ? (
+        {isInList ? (
           <div className="alreadyToFavs">
             <p>
               <span>★</span>Already in your Fav's
@@ -100,17 +155,7 @@ const CharacterAlone = ({ favList, setFavList }) => {
         ) : (
           <div
             className="toFavs"
-            onClick={() => {
-              const newFavList = [...favList];
-              newFavList.push({
-                id: dataCharacter.data._id,
-                data: dataCharacter.data,
-              });
-              setFavList(newFavList);
-              const content = JSON.stringify(newFavList);
-              Cookies.remove("favList");
-              Cookies.set("favList", content, { expires: 7 });
-            }}
+            onClick={() => handleClickAdd(dataCharacter.data._id)}
           >
             <p>
               <span>★</span>Add to fav's

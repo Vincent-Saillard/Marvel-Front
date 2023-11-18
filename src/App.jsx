@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 // Pages
 import Home from "./assets/pages/home/Home";
 import Characters from "./assets/pages/characters/Characters";
@@ -20,7 +21,7 @@ const App = () => {
   // state to update fav list
   const [favList, setFavList] = useState([]);
   // state for user token after login or register
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(Cookies.get("token") || null);
   // state for modal opening/closing Register
   const [registerModalState, setRegisterModalState] = useState(false);
   // state for modal opening/closing login
@@ -55,13 +56,23 @@ const App = () => {
           <Route
             path="/character/:characterId"
             element={
-              <CharacterAlone favList={favList} setFavList={setFavList} />
+              <CharacterAlone
+                favList={favList}
+                setFavList={setFavList}
+                token={token}
+              />
             }
           />
           <Route path="/comics" element={<Comics searchName={searchName} />} />
           <Route
             path="/comic/:comicId"
-            element={<ComicAlone favList={favList} setFavList={setFavList} />}
+            element={
+              <ComicAlone
+                favList={favList}
+                setFavList={setFavList}
+                token={token}
+              />
+            }
           />
           <Route
             path="/favs"
