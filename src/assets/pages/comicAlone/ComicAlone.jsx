@@ -2,19 +2,27 @@ import "../comicAlone/comicAlone.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
-const ComicAlone = ({ favList, setFavList }) => {
+const ComicAlone = ({ favList, setFavList, token }) => {
   // state to load page
   const [isLoading, setIsLoading] = useState(true);
   // state for data recieved concerning comic alone
   const [dataComic, setDataComic] = useState();
+  // state for fav data
+  const [dataFavs, setDataFavs] = useState();
 
   const location = useLocation();
 
+  const [refresh, setRefresh] = useState(false);
+
+  const [isInList, setIsInList] = useState(false);
+
+  const [counter, setCounter] = useState(0);
+
   // determine if character is already in fav or not
-  const copyFavList = [...favList];
-  const idList = copyFavList.map((favObject) => favObject.id);
+  // const copyFavList = [...favList];
+  // const idList = copyFavList.map((favObject) => favObject.id);
 
   useEffect(() => {
     const comicId = location.state._id;
@@ -27,13 +35,65 @@ const ComicAlone = ({ favList, setFavList }) => {
         setDataComic(response.data);
         console.log(dataComic);
 
+        const responseFavs = await axios.get(
+          "https://site--marvel-api--kyjktnxc458w.code.run/favs",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setDataFavs(responseFavs.data.allFavs);
+
+        // determine if character is already in fav or not
+
+        if (dataFavs) {
+          const idList = dataFavs.map((fav) => fav.itemId);
+
+          if (idList.includes(dataComic.data._id) === true) {
+            setIsInList(true);
+          }
+        }
+
         setIsLoading(false);
+        if (counter === 0) {
+          setCounter(counter + 1);
+        }
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-  }, [isLoading]);
+  }, [refresh, counter, isLoading]);
+
+  const handleClickAdd = (id) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "https://site--marvel-api--kyjktnxc458w.code.run/favs",
+          {
+            itemId: dataComic.data._id,
+            title: dataComic.data.title,
+            path: dataComic.data.thumbnail.path,
+            extension: dataComic.data.thumbnail.extension,
+            name: "",
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setRefresh(!refresh);
+        setIsInList(true);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchData();
+  };
 
   return isLoading ? (
     <section className="comicAlone">
@@ -81,7 +141,7 @@ const ComicAlone = ({ favList, setFavList }) => {
             </div>
           </div>
           <div className="aside">
-            {idList.includes(dataComic.data._id) ? (
+            {isInList ? (
               <div className="alreadyToFavs">
                 <p>
                   <span>★</span>Already in your Fav's
@@ -90,17 +150,7 @@ const ComicAlone = ({ favList, setFavList }) => {
             ) : (
               <div
                 className="toFavs"
-                onClick={() => {
-                  const newFavList = [...favList];
-                  newFavList.push({
-                    id: dataComic.data._id,
-                    data: dataComic.data,
-                  });
-                  setFavList(newFavList);
-                  const content = JSON.stringify(newFavList);
-                  Cookies.remove("favList");
-                  Cookies.set("favList", content, { expires: 7 });
-                }}
+                onClick={() => handleClickAdd(dataComic.data._id)}
               >
                 <p>
                   <span>★</span>Add to fav's

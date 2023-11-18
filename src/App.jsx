@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import axios from "axios";
+
 import Cookies from "js-cookie";
 // Pages
 import Home from "./assets/pages/home/Home";
@@ -55,13 +55,7 @@ const App = () => {
           />
           <Route
             path="/character/:characterId"
-            element={
-              <CharacterAlone
-                favList={favList}
-                setFavList={setFavList}
-                token={token}
-              />
-            }
+            element={<CharacterAlone token={token} />}
           />
           <Route path="/comics" element={<Comics searchName={searchName} />} />
           <Route

@@ -123,7 +123,7 @@ const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
                             ? `/comic/${obj._id}`
                             : `/character/${obj._id}`
                         }
-                        state={{ _id: obj._id }}
+                        state={{ _id: obj.itemId }}
                         className="link"
                       >
                         <img

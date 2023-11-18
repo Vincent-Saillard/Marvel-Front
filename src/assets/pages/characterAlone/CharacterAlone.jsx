@@ -4,7 +4,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 // import Cookies from "js-cookie";
 
-const CharacterAlone = ({ favList, setFavList, token }) => {
+const CharacterAlone = ({ token }) => {
   // state to load page
   const [isLoading, setIsLoading] = useState(true);
   // state for data recieved concerning character alone
@@ -19,6 +19,8 @@ const CharacterAlone = ({ favList, setFavList, token }) => {
   const [refresh, setRefresh] = useState(false);
 
   const [isInList, setIsInList] = useState(false);
+
+  const [counter, setCounter] = useState(0);
   // determine if character is already in fav or not
   // const copyFavList = [...favList];
   // const idList = copyFavList.map((favObject) => favObject.id);
@@ -53,6 +55,7 @@ const CharacterAlone = ({ favList, setFavList, token }) => {
         );
 
         setDataFavs(responseFavs.data.allFavs);
+
         // determine if character is already in fav or not
 
         if (dataFavs) {
@@ -62,15 +65,19 @@ const CharacterAlone = ({ favList, setFavList, token }) => {
             setIsInList(true);
           }
         }
+        if (counter === 1) {
+          setIsLoading(false);
+        }
 
-        setIsLoading(false);
-        console.log(isInList);
+        if (counter === 0) {
+          setCounter(counter + 1);
+        }
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-  }, [refresh]);
+  }, [refresh, counter, isLoading]);
 
   const handleClickAdd = (id) => {
     const fetchData = async () => {
@@ -82,6 +89,7 @@ const CharacterAlone = ({ favList, setFavList, token }) => {
             name: dataCharacter.data.name,
             path: dataCharacter.data.thumbnail.path,
             extension: dataCharacter.data.thumbnail.extension,
+            title: "",
           },
           {
             headers: {
@@ -89,7 +97,7 @@ const CharacterAlone = ({ favList, setFavList, token }) => {
             },
           }
         );
-        console.log(response.data);
+
         setRefresh(!refresh);
         setIsInList(true);
       } catch (error) {
@@ -146,6 +154,7 @@ const CharacterAlone = ({ favList, setFavList, token }) => {
             <div className="right"></div>
           </div>
         </div>
+
         {isInList ? (
           <div className="alreadyToFavs">
             <p>
