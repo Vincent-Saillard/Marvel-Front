@@ -153,6 +153,7 @@
   margin-bottom: 30px;
   color: white;
   font-size: 24px;
+  text-align: center;
 }
 
 .characterAlone .carousel {
@@ -252,4 +253,30 @@
     rgb(233, 23, 30, 0) 50%,
     rgb(233, 23, 30, 0)
   );
+}
+
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+
+@media screen and (max-width: 1200px) {
+  .characterAlone .carousel {
+    display: flex;
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .characterAlone .carousel {
+    display: flex;
+    width: 300px;
+  }
+
+  .characterAlone .container {
+    padding: 100px 20px;
+  }
+
+  .characterAlone h1 {
+    font-size: 30px;
+  }
 }

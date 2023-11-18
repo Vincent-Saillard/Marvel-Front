@@ -123,11 +123,13 @@ const ComicAlone = ({ favList, setFavList, token }) => {
     <section className="comicAlone">
       <div className="container">
         <h1>
-          =✪= &nbsp;&nbsp;
-          {dataComic.data.title.indexOf("(") > 0
-            ? dataComic.data.title.slice(0, dataComic.data.title.indexOf("("))
-            : dataComic.data.title}
-          &nbsp;&nbsp; =✪=
+          <span>=✪=</span>
+          <span>
+            {dataComic.data.title.indexOf("(") > 0
+              ? dataComic.data.title.slice(0, dataComic.data.title.indexOf("("))
+              : dataComic.data.title}
+          </span>
+          <span>=✪=</span>
         </h1>
         <div className="content">
           <div className="comicSelected">

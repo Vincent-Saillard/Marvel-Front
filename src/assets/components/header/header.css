@@ -183,10 +183,6 @@ header .burgermenu:hover {
     height: fit-content;
   }
 
-  header .container {
-    background-color: rgb(10, 47, 35);
-  }
-
   header .burgermenu img {
     display: flex;
   }

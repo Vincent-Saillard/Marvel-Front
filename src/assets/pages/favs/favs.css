@@ -15,6 +15,10 @@
   color: white;
   font-size: 35px;
   margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
 }
 
 .favs .link {
@@ -136,4 +140,21 @@
 .favs .empty {
   color: white;
   font-size: 24px;
+}
+
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+
+@media screen and (max-width: 760px) {
+  .favs h1 {
+    font-size: 30px;
+  }
+
+  .favs .container {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

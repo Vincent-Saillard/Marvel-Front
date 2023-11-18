@@ -101,7 +101,9 @@
 
 .comics .pageOptions {
   display: flex;
+
   gap: 30px;
+  color: white;
 }
 
 .comics .pageOptions input {
@@ -120,4 +122,23 @@
   display: flex;
   gap: 5px;
   /* align-items: center; */
+}
+
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+
+@media screen and (max-width: 760px) {
+  .comics .container {
+    padding: 100px 20px;
+  }
+
+  .comics h1 {
+    font-size: 30px;
+  }
+
+  .comics .pageOptions {
+    flex-direction: column;
+    align-items: center;
+  }
 }

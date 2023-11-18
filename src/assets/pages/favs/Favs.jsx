@@ -17,25 +17,30 @@ const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
   const [refresh, setRefresh] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://site--marvel-api--kyjktnxc458w.code.run/favs",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(
+            "https://site--marvel-api--kyjktnxc458w.code.run/favs",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
 
-        setData(response.data.allFavs);
+          setData(response.data.allFavs);
 
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchData();
+          setIsLoading(false);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      fetchData();
+    } else {
+      setRegisterModalState(true);
+      navigate("/");
+    }
   }, [refresh]);
 
   // function to remove fav
@@ -88,87 +93,85 @@ const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
   //   setFavList(newFavList);
   // };
 
-  if (token) {
-    return isLoading ? (
-      <section className="characters">
-        <div className="container">
-          <div className="loading">
-            <div className="lds-ring">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <p>Your content is loading, please wait...</p>
+  // if (token) {
+  return isLoading ? (
+    <section className="characters">
+      <div className="container">
+        <div className="loading">
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
           </div>
+          <p>Your content is loading, please wait...</p>
         </div>
-      </section>
-    ) : (
-      <section className="favs">
-        <div className="container">
-          <h1>
-            =✪= &nbsp;&nbsp;My favourites Comic Books and Characters&nbsp;&nbsp;
-            =✪=
-          </h1>
-          <div className="results">
-            {console.log(data)}
-            {data.length > 0 ? (
-              data.map((obj) => {
-                return (
-                  <div className="group" key={obj._id}>
-                    <div className="fav">
-                      <Link
-                        to={
-                          obj.title
-                            ? `/comic/${obj._id}`
-                            : `/character/${obj._id}`
-                        }
-                        state={{ _id: obj.itemId }}
-                        className="link"
-                      >
-                        <img
-                          src={`${obj.path}/portrait_uncanny.${obj.extension}`}
-                          alt={obj.title || obj.name}
-                        />
-                        <div className="text">
-                          <div className="left"></div>
-                          {obj.title ? (
-                            obj.title.indexOf("(") > 0 ? (
-                              <div className="title">
-                                {obj.title.slice(0, obj.title.indexOf("("))}
-                              </div>
-                            ) : (
-                              <div className="title">{obj.title}</div>
-                            )
-                          ) : obj.name.indexOf("(") > 0 ? (
+      </div>
+    </section>
+  ) : (
+    <section className="favs">
+      <div className="container">
+        <h1>
+          <span>=✪=</span>
+          <span>My favourites Comic Books and Characters</span>
+          <span>=✪=</span>
+        </h1>
+        <div className="results">
+          {console.log(data)}
+          {data.length > 0 ? (
+            data.map((obj) => {
+              return (
+                <div className="group" key={obj._id}>
+                  <div className="fav">
+                    <Link
+                      to={
+                        obj.title
+                          ? `/comic/${obj._id}`
+                          : `/character/${obj._id}`
+                      }
+                      state={{ _id: obj.itemId }}
+                      className="link"
+                    >
+                      <img
+                        src={`${obj.path}/portrait_uncanny.${obj.extension}`}
+                        alt={obj.title || obj.name}
+                      />
+                      <div className="text">
+                        <div className="left"></div>
+                        {obj.title ? (
+                          obj.title.indexOf("(") > 0 ? (
                             <div className="title">
-                              {obj.name.slice(0, obj.name.indexOf("("))}
+                              {obj.title.slice(0, obj.title.indexOf("("))}
                             </div>
                           ) : (
-                            <div className="title">{obj.name}</div>
-                          )}
-                          <div className="right"></div>
-                        </div>
-                      </Link>
-                    </div>
-                    <div
-                      className="remove"
-                      onClick={() => handleRemove(obj._id)}
-                    >
-                      <p>Remove from fav's</p>
-                    </div>
+                            <div className="title">{obj.title}</div>
+                          )
+                        ) : obj.name.indexOf("(") > 0 ? (
+                          <div className="title">
+                            {obj.name.slice(0, obj.name.indexOf("("))}
+                          </div>
+                        ) : (
+                          <div className="title">{obj.name}</div>
+                        )}
+                        <div className="right"></div>
+                      </div>
+                    </Link>
                   </div>
-                );
-              })
-            ) : (
-              <div className="emptyness">
-                <img src={oops} alt="oops sign" className="oops" />
-                <p className="empty">Your Fav list is empty</p>
-              </div>
-            )}
+                  <div className="remove" onClick={() => handleRemove(obj._id)}>
+                    <p>Remove from fav's</p>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className="emptyness">
+              <img src={oops} alt="oops sign" className="oops" />
+              <p className="empty">Your Fav list is empty</p>
+            </div>
+          )}
 
-            {/* ------------FAVS IN COOKIES------------- */}
-            {/* {copyFavList.length > 0 ? (
+          {/* ------------FAVS IN COOKIES------------- */}
+          {/* {copyFavList.length > 0 ? (
               dataList.map((obj) => {
                 return (
                   <div className="group" key={obj._id}>
@@ -222,16 +225,16 @@ const Favs = ({ favList, setFavList, token, setRegisterModalState }) => {
                 <p className="empty">Your Fav list is empty</p>
               </div>
             )} */}
-          </div>
         </div>
-      </section>
-    );
-  } else {
-    setTimeout(() => {
-      navigate("/");
-      setRegisterModalState(true);
-    }, 2000);
-  }
+      </div>
+    </section>
+  );
+  // } else {
+  //   setTimeout(() => {
+  //     navigate("/");
+  //     setRegisterModalState(true);
+  //   }, 2000);
+  // }
 };
 
 export default Favs;

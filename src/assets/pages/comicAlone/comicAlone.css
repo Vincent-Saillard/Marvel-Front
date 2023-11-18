@@ -16,6 +16,10 @@
   color: white;
   font-size: 35px;
   margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
 }
 
 .comicAlone .comicSelected {
@@ -141,6 +145,7 @@
   );
   padding: 20px 10px;
   border-left: 2px solid goldenrod;
+  border-right: 2px solid goldenrod;
 }
 
 .comicAlone .content {
@@ -151,4 +156,44 @@
 .comicAlone .aside {
   display: flex;
   flex-direction: column;
+}
+
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+
+@media screen and (max-width: 760px) {
+  .comicAlone h1 {
+    font-size: 30px;
+  }
+
+  .comicAlone .container {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .comicAlone .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .comicAlone .aside {
+    align-items: center;
+  }
+
+  .comicAlone .description {
+    background: linear-gradient(
+      90deg,
+      rgb(44, 133, 189, 0),
+      rgb(44, 133, 189),
+      rgb(44, 133, 189, 0)
+    );
+    padding: 20px 10px;
+    border-top: 2px solid goldenrod;
+    border-bottom: 2px solid goldenrod;
+    border-left: none;
+    border-right: none;
+  }
 }
