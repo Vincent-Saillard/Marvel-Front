@@ -7,6 +7,7 @@ header {
   top: 0;
   width: 100%;
   z-index: 1;
+  border: 1px solid red;
 }
 
 header .container {
@@ -16,6 +17,7 @@ header .container {
   justify-content: center;
   height: 100%;
   padding: 0px 20px;
+  gap: 5px;
 }
 
 header .lineOne {
@@ -23,6 +25,14 @@ header .lineOne {
   justify-content: space-between;
   align-items: center;
   gap: 30px;
+}
+
+header .linetwo {
+  display: none;
+}
+
+header .linethree {
+  display: none;
 }
 
 header .logo {
@@ -43,7 +53,7 @@ header .search {
   position: relative;
 }
 
-header .glass {
+header .search .glass {
   height: 20px;
   width: 40px;
   object-fit: scale-down;
@@ -73,6 +83,14 @@ header nav {
 
   font-weight: bold;
   font-size: 24px;
+}
+
+header .searchBurger {
+  display: none;
+}
+
+header .navBurger {
+  display: none;
 }
 
 header .border {
@@ -109,6 +127,10 @@ header .hidden {
   visibility: hidden;
 }
 
+header .none {
+  display: none;
+}
+
 header .link:hover,
 header .star:hover,
 header .logo:hover {
@@ -138,5 +160,84 @@ header .star:hover {
   }
   to {
     box-shadow: 0px 0px 20px rgb(255, 255, 255, 0.3);
+  }
+}
+
+header .burgermenu img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  display: none;
+}
+
+header .burgermenu:hover {
+  cursor: pointer;
+}
+
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+/* -----------RESPONSIVE------------ */
+
+@media screen and (max-width: 760px) {
+  header {
+    height: fit-content;
+  }
+
+  header .container {
+    background-color: rgb(10, 47, 35);
+  }
+
+  header .burgermenu img {
+    display: flex;
+  }
+
+  header .star,
+  header .search,
+  header nav {
+    display: none;
+  }
+
+  header .linetwo {
+    display: flex;
+  }
+
+  header .linethree {
+    display: flex;
+  }
+
+  header .navBurger {
+    display: flex;
+    border: 1px solid red;
+    width: 100%;
+    height: 40px;
+  }
+
+  header .navBurger .link {
+    height: 40px;
+  }
+
+  header .searchBurger {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+    position: relative;
+  }
+
+  header .searchBurger .searchBar {
+    width: 100%;
+  }
+
+  header .searchBurger .glass {
+    height: 20px;
+    width: 40px;
+    object-fit: scale-down;
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    border-right: 1px solid white;
+  }
+
+  header .none {
+    display: none;
   }
 }
