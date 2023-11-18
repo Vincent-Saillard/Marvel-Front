@@ -43,18 +43,20 @@ const CharacterAlone = ({ token }) => {
 
         setDataComics(responseComics.data);
 
-        // sending a third request to get fav list
+        // sending a third request to get fav list if user is connected
 
-        const responseFavs = await axios.get(
-          "https://site--marvel-api--kyjktnxc458w.code.run/favs",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        if (token) {
+          const responseFavs = await axios.get(
+            "https://site--marvel-api--kyjktnxc458w.code.run/favs",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
 
-        setDataFavs(responseFavs.data.allFavs);
+          setDataFavs(responseFavs.data.allFavs);
+        }
 
         // determine if character is already in fav or not
 
@@ -80,31 +82,38 @@ const CharacterAlone = ({ token }) => {
   }, [refresh, counter, isLoading]);
 
   const handleClickAdd = (id) => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          "https://site--marvel-api--kyjktnxc458w.code.run/favs",
-          {
-            itemId: dataCharacter.data._id,
-            name: dataCharacter.data.name,
-            path: dataCharacter.data.thumbnail.path,
-            extension: dataCharacter.data.thumbnail.extension,
-            title: "",
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+    // if user not connected alert
+    if (token) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.post(
+            "https://site--marvel-api--kyjktnxc458w.code.run/favs",
+            {
+              itemId: dataCharacter.data._id,
+              name: dataCharacter.data.name,
+              path: dataCharacter.data.thumbnail.path,
+              extension: dataCharacter.data.thumbnail.extension,
+              title: "",
             },
-          }
-        );
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
 
-        setRefresh(!refresh);
-        setIsInList(true);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchData();
+          setRefresh(!refresh);
+          setIsInList(true);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      fetchData();
+    } else {
+      alert(
+        "Only connected users can add items to favorites, please Register or Connect to your account on Homepage."
+      );
+    }
   };
 
   return isLoading ? (
