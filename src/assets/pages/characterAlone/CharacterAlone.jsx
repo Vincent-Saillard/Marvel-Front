@@ -136,15 +136,18 @@ const CharacterAlone = ({ token }) => {
     <section className="characterAlone">
       <div className="container">
         <h1>
-          =✪= &nbsp;&nbsp;
-          {dataCharacter.data.name.indexOf("(") > 0
-            ? dataCharacter.data.name.slice(
-                0,
-                dataCharacter.data.name.indexOf("(")
-              )
-            : dataCharacter.data.name}
-          &nbsp;&nbsp; =✪=
+          <span>=✪=</span>
+          <span>
+            {dataCharacter.data.name.indexOf("(") > 0
+              ? dataCharacter.data.name.slice(
+                  0,
+                  dataCharacter.data.name.indexOf("(")
+                )
+              : dataCharacter.data.name}
+          </span>
+          <span>=✪=</span>
         </h1>
+
         <div className="heroeSelected">
           {dataCharacter.data.thumbnail.path.includes("image_not_available") ? (
             <img src={silhouette} alt="silhouette of unknown hero" />

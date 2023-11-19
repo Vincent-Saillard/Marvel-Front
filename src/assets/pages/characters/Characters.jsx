@@ -61,7 +61,12 @@ const Characters = ({ searchName }) => {
   ) : (
     <section className="characters">
       <div className="container">
-        <h1>=✪= &nbsp;&nbsp;Marvel Characters&nbsp;&nbsp; =✪=</h1>
+        <h1>
+          <span>=✪=</span>
+          <span>Marvel Characters</span>
+          <span>=✪=</span>
+        </h1>
+
         {/* data results */}
         <div className="results">
           {data.data.results.map((heroe) => {
