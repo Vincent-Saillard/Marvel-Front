@@ -181,10 +181,6 @@ header .burgermenu:hover {
 /* -----------RESPONSIVE------------ */
 
 @media screen and (max-width: 760px) {
-  header {
-    /* height: fit-content; */
-  }
-
   header .burgermenu img {
     display: flex;
   }
