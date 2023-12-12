@@ -17,7 +17,7 @@ This project contains
 * Footer with links to my Github and linkedin pages
 
 All responsive.
-Project is hosted on Netlify fot front-end.
+Project is hosted on Netlify for front-end.
 Back-end is done and hosted on Northflank.
 
 ## Getting Started
